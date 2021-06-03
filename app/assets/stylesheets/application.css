@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+ .button {
+    background-color: rgb(168, 197, 236);
+    border-radius: 25px;
+    padding: 20px;
+    width: 180px;
+    height: 60px;
+ }

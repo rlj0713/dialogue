@@ -1,0 +1,17 @@
+<br><br>
+
+<h3>Login</h3>
+
+<form action="/login" method="POST">
+	<input type="text" name="username">
+	<input type="password" name="password">
+	<input type="submit" value="Log In">
+</form>
+<%= link_to('Log in with Facebook', '/auth/facebook') %>
+<%= link_to('Log in with Google', '/auth/google_oauth2') %>
+
+<br><br>
+If you are new to this app:
+<form action="/signup" method="GET">
+	<input type="submit" value="Sign-Up">
+</form>
