@@ -5,10 +5,9 @@ Rails.application.routes.draw do
   get 'sessions/login' => 'sessions#login'
 
   get '/auth/:provider/callback' => 'sessions#create'
-  # get '/auth/google_oauth2/callback' => 'sessions#GoogleAuth'
-
 
   get '/login' => 'sessions#new'
+  get '/signup' => 'sessions#signup'
   # post '/login' => 'sessions#create'
   
   get '/session', to: 'sessions#destroy'
