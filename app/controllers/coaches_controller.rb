@@ -11,16 +11,15 @@ class CoachesController < ApplicationController
             c.coach_permission = true
           end
           @coach.save
-        elsif Coach.find_by(auth['uid'])
-          @coach = Coach.find_or_create_by(uid: auth['uid']) do |c|
-            c.name = auth['info']['name']
-            c.image = auth['info']['image']
-          end
         else
-          redirect_to 'sessions/login'
+            @coach = Coach.find_or_create_by(uid: auth['uid']) do |c|
+                c.first_name = auth['info']['name']
+                c.image = auth['info']['image']
+            end
+            @coach.save
         end
         
-        session[:user_id] = @coach.id
+        session[:user_id] = @coach.uid
         render 'teachers/index'
     end
 
