@@ -8,6 +8,7 @@ class CoachesController < ApplicationController
             c.password = params[:password]
             c.first_name = params[:first_name]
             c.last_name = params[:last_name]
+            c.coach_permission = true
           end
           @coach.save
         elsif Coach.find_by(auth['uid'])
@@ -20,7 +21,7 @@ class CoachesController < ApplicationController
         end
         
         session[:user_id] = @coach.id
-        render 'coaches/home'
+        render 'teachers/index'
     end
 
     def new

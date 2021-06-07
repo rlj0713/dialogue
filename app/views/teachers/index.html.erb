@@ -1,8 +1,8 @@
-<% if session[:user_id] %>
-  <h1><%= @teacher.first_name %> <%= @teacher.last_name %></h1>
+
+<% if params[:controller] == 'coaches' %>
+  <h1>This will show a list of teachers who belong to the coach</h1>
 <% else %>
-  <%= link_to('Log in with Facebook!', '/auth/facebook') %>
-  <%= link_to('Log in with Google!', '/auth/google') %>
+  <h1>This will show a list of posts pertaining to this teacher</h1>
 <% end %>
 <br>
 <%= link_to "Log Out", session_path, method:'delete' %>

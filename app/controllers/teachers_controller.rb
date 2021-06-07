@@ -8,6 +8,7 @@ class TeachersController < ApplicationController
             t.password = params[:password]
             t.first_name = params[:first_name]
             t.last_name = params[:last_name]
+            t.coach_permission = false
           end
           @teacher.save
         elsif Teacher.find_by(auth['uid'])
