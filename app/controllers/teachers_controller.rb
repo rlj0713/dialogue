@@ -15,16 +15,25 @@ class TeachersController < ApplicationController
           @teacher = Teacher.find_or_create_by(uid: auth['uid']) do |t|
             t.name = auth['info']['name']
             t.image = auth['info']['image']
+            t.coach_permission = false
           end
         else
           redirect_to 'sessions/login'
         end
         
         session[:user_id] = @teacher.id
-        render 'teachers/index'
+        render 'posts/index'
     end
 
     def new
+    end
+    
+    def show
+        if params[:controller] == 'teachers'
+            redirect_to '/posts'
+        else
+            render '/teachers'
+        end
     end
 
     # Oauth specfic log-in method
