@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   delete '/session', to: 'sessions#destroy'
 
   resources :users
+  resources :coaches
+  resources :teachers
 end
