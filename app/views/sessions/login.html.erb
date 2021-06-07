@@ -3,8 +3,8 @@
 <h3>Login</h3>
 
 <form action="/login" method="POST">
-	<input type="text" name="username">
-	<input type="password" name="password">
+	<input type="text" name="email" placeholder="email">
+	<input type="password" name="password" placeholder="password">
 	<input type="submit" value="Log In">
 </form>
 <%= link_to('Log in with Facebook', '/auth/facebook') %>
@@ -13,5 +13,5 @@
 <br><br>
 If you are new to this app:
 <form action="/signup" method="GET">
-	<input type="submit" value="Sign-Up">
+	<input type="submit" value="Sign-Up as a Coach">
 </form>

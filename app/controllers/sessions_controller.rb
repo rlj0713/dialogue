@@ -1,13 +1,22 @@
 class SessionsController < ApplicationController
+  protect_from_forgery with: :null_session
 
   def create
-    if User.find_by(auth['uid'])
+    if auth == nil
+      @user = User.new do |u|
+        u.email = params[:email]
+        u.password = params[:password]
+        u.name = "#{params[:first_name]} #{params[:last_name]}"
+        u.image = "https://static.thenounproject.com/png/1121885-200.png"
+      end
+      @user.save
+    elsif User.find_by(auth['uid'])
       @user = User.find_or_create_by(uid: auth['uid']) do |u|
         u.name = auth['info']['name']
         u.image = auth['info']['image']
       end
     else
-      byebug
+      redirect_to 'sessions/new'
     end
     
     session[:user_id] = @user.id
@@ -29,5 +38,9 @@ class SessionsController < ApplicationController
   def auth
     request.env['omniauth.auth']
   end
+
+  # def user_params
+  #   params.require(:session).permit(:email, :first_name, :last_name, :password)
+  # end
 
 end

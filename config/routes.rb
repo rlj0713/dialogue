@@ -3,13 +3,15 @@ Rails.application.routes.draw do
 
   root 'sessions#login'
   get 'sessions/login' => 'sessions#login'
-
   get '/auth/:provider/callback' => 'sessions#create'
-
   get '/login' => 'sessions#new'
+  post '/login' => 'users#show'
+
   get '/signup' => 'sessions#signup'
-  # post '/login' => 'sessions#create'
-  
+
+  post '/signup' => 'sessions#create' 
   get '/session', to: 'sessions#destroy'
   delete '/session', to: 'sessions#destroy'
+
+  resources :users
 end
