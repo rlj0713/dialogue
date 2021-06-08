@@ -25,13 +25,10 @@ class TeachersController < ApplicationController
         redirect_to '/posts'
     end
 
-    def new
-      session[:coach_permission] = false
-    end
+    # def new
+    #   session[:coach_permission] = false
+    # end
     
-    def show
-      # render '/teachers/show'
-    end
 
     private
 

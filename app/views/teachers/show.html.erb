@@ -1,2 +1,7 @@
 <h1>This is a single teacher</h1>
 
+
+<%  @teacher = Teacher.find_by_id(params[:id]) %>
+
+Teacher Name: <%= @teacher.first_name %><br><br>
+There will be a teacher's face and a feed of all posts relevant to them.
