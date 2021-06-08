@@ -1,11 +1,3 @@
 
-<%= @coach.first_name %>
-<img src="<%= @coach.image %>">
-<% if @coach != nil %>
-  <h1>This user is a coach</h1>
-  <h1>This will show a list of teachers who belong to the coach</h1>
-<% else %>
-  <h1>This will show a list of posts pertaining to this teacher</h1>
-<% end %>
-<br>
+This will be a list of teachers with paramaters to only show certain teachers.
 <%= link_to "Log Out", session_path, method:'delete' %>

@@ -20,11 +20,9 @@ class CoachesController < ApplicationController
         end
         
         session[:user_id] = @coach.uid
-        render 'teachers/index'
+        redirect_to '/teachers'
     end
 
-    def new
-    end
 
     # def show
     #     @coach = Coach.find_by(email: params[:email])
@@ -39,6 +37,8 @@ class CoachesController < ApplicationController
     #         redirect_to root_path
     #     end
     # end
+
+    private
 
     # Oauth specfic log-in method
     def auth

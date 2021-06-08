@@ -1,6 +1,6 @@
 class TeachersController < ApplicationController
     protect_from_forgery with: :null_session
-
+    
     def create
         if auth == nil
           @teacher = Teacher.new do |t|
@@ -22,19 +22,18 @@ class TeachersController < ApplicationController
         end
         
         session[:user_id] = @teacher.id
-        render 'posts/index'
+        redirect_to '/posts'
     end
 
     def new
+      session[:coach_permission] = false
     end
     
     def show
-        if params[:controller] == 'teachers'
-            redirect_to '/posts'
-        else
-            render '/teachers'
-        end
+      # render '/teachers/show'
     end
+
+    private
 
     # Oauth specfic log-in method
     def auth

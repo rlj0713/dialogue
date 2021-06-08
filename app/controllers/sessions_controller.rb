@@ -2,34 +2,31 @@ class SessionsController < ApplicationController
   protect_from_forgery with: :null_session
 
   def create
-    if auth == nil
-      @user = User.new do |u|
-        u.email = params[:email]
-        u.password = params[:password]
-        u.name = "#{params[:first_name]} #{params[:last_name]}"
-        u.image = "https://static.thenounproject.com/png/1121885-200.png"
-      end
-      @user.save
-    elsif User.find_by(auth['uid'])
-      @user = User.find_or_create_by(uid: auth['uid']) do |u|
-        u.name = auth['info']['name']
-        u.image = auth['info']['image']
-      end
+    if params[:coach_permission].to_i == 0
+      session[:coach_permission] = false
+      render '/teachers/new'
     else
-      redirect_to 'sessions/new'
+      session[:coach_permission] = true
+      render '/coaches/new'
     end
-    
-    session[:user_id] = @user.id
-    render 'sessions/home'
-  end
-
-  def signup
-    render 'sessions/signup'
   end
   
   def destroy
     session.delete('user_id')
     redirect_to root_path
+  end
+
+  def show
+    @user = Coach.find_by(:email => params[:email]) || Teacher.find_by(:email => params[:email]) 
+    if @user.authenticate(params[:password]) && @user.coach_permission
+			session[:user_id] = @user.id
+			redirect_to "/coaches/#{@user.id}"
+		elsif @user.authenticate(params[:password]) && @user.coach_permission == false
+      session[:user_id] = @user.id
+			redirect_to "/teachers/#{@user.id}"
+    else
+			redirect_to root_path
+		end
   end
   
   private
@@ -38,9 +35,5 @@ class SessionsController < ApplicationController
   def auth
     request.env['omniauth.auth']
   end
-
-  # def user_params
-  #   params.require(:session).permit(:email, :first_name, :last_name, :password)
-  # end
 
 end
