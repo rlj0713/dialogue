@@ -1,6 +1,9 @@
 <br><br>
 <%= @user.first_name %><br>
+
+<% if @user.image != nil %>
 <img src="<%= @user.image %>"><br><br>
+<% end %>
 
 <%= link_to "Log Out", session_path, method:'delete' %><br><br>
 
