@@ -1,8 +1,7 @@
 
-<%= @coach.first_name %>
-<img src="<%= @coach.image %>">
-<% if @coach != nil %>
-  <h1>This user is a coach</h1>
+<%= @user.first_name %>
+<img src="<%= @user.image %>">
+<% if @user != nil %>
   <h1>This will show a list of teachers who belong to the coach</h1>
 <% else %>
   <h1>This will show a list of posts pertaining to this teacher</h1>

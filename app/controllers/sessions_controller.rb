@@ -10,13 +10,11 @@ class SessionsController < ApplicationController
         u.image = "https://static.thenounproject.com/png/1121885-200.png"
       end
       @user.save
-    elsif User.find_by(auth['uid'])
+    else
       @user = User.find_or_create_by(uid: auth['uid']) do |u|
         u.name = auth['info']['name']
         u.image = auth['info']['image']
       end
-    else
-      redirect_to 'sessions/new'
     end
     
     session[:user_id] = @user.id
@@ -38,9 +36,4 @@ class SessionsController < ApplicationController
   def auth
     request.env['omniauth.auth']
   end
-
-  # def user_params
-  #   params.require(:session).permit(:email, :first_name, :last_name, :password)
-  # end
-
 end

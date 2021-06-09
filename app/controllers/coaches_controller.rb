@@ -23,9 +23,6 @@ class CoachesController < ApplicationController
         render 'teachers/index'
     end
 
-    def new
-    end
-
     def show
         @coach = Coach.find_by(email: params[:email])
         @teacher = Teacher.find_by(email: params[:email])
