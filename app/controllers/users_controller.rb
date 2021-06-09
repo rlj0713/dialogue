@@ -19,14 +19,14 @@ class UsersController < ApplicationController
         end
         
         session[:user_id] = @user.uid
-        render 'teachers/index'
+        render 'users/show'
     end
 
     def show
         @user = User.find_by(email: params[:email])
-        if @coach.authenticate(params[:password])
+        if @user.authenticate(params[:password])
             session[:user_id] = @user.id
-            render 'teachers/index'
+            render 'users/show'
         else
             redirect_to root_path
         end

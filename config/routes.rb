@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'sessions/login' => 'sessions#login'
   get '/auth/:provider/callback' => 'users#create'
   get '/login' => 'sessions#new'
-  post '/login' => 'coaches#show'
+  post '/login' => 'users#show'
 
   get '/signup' => 'sessions#signup'
 
@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   resources :coaches
   resources :teachers
   resources :posts
+  resources :users
 end
