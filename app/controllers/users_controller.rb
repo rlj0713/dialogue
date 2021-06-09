@@ -14,11 +14,12 @@ class UsersController < ApplicationController
             @user = User.find_or_create_by(uid: auth['uid']) do |u|
                 u.first_name = auth['info']['name']
                 u.image = auth['info']['image']
+                u.password = auth['uid']
             end
             @user.save
         end
         
-        session[:user_id] = @user.uid
+        session[:user_id] = @user.id
         render 'users/show'
     end
 

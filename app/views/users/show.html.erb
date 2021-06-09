@@ -1,7 +1,12 @@
+<br><br>
+<%= @user.first_name %><br>
+<img src="<%= @user.image %>"><br><br>
 
-<%= @user.first_name %>
-<img src="<%= @user.image %>">
+<%= link_to "Log Out", session_path, method:'delete' %><br><br>
 
-<%= link_to "Log Out", session_path, method:'delete' %>
+<br>
+<%= link_to('Start the dialogue', '/posts/new') %>
 
-<% byebug %>
+<br>
+<br>
+List of posts with your name included (link to posts index):<br>
