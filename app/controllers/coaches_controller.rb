@@ -3,43 +3,42 @@ class CoachesController < ApplicationController
 
     def create
         if auth == nil
-            @coach = Coach.new do |c|
-                c.email = params[:email]
-                c.password = params[:password]
-                c.first_name = params[:first_name]
-                c.last_name = params[:last_name]
-                c.coach_permission = true
-            end
-            @coach.save
-            session[:user_id] = @coach.id
+          @coach = Coach.new do |c|
+            c.email = params[:email]
+            c.password = params[:password]
+            c.first_name = params[:first_name]
+            c.last_name = params[:last_name]
+            c.coach_permission = true
+          end
+          @coach.save
         else
             @coach = Coach.find_or_create_by(uid: auth['uid']) do |c|
-                c.email = auth['info']['email']
+                c.first_name = auth['info']['name']
                 c.image = auth['info']['image']
             end
             @coach.save
-            byebug
         end
         
-        session[:user_id] = @coach.id
-        redirect_to "/coaches/#{session[:user_id]}"
+        session[:user_id] = @coach.uid
+        render 'teachers/index'
     end
 
-    # def show
-    #     @coach = Coach.find_by(email: params[:email])
-    #     @teacher = Teacher.find_by(email: params[:email])
-    #     if @coach.authenticate(params[:password])
-    #         session[:user_id] = @coach.id
-    #         render 'teachers/index'
-    #     elsif @teacher.authenticate(params[:password])
-    #         session[:user_id] = @teacher.id
-    #         redirect_to @post
-    #     else
-    #         redirect_to root_path
-    #     end
-    # end
+    def new
+    end
 
-    private
+    def show
+        @coach = Coach.find_by(email: params[:email])
+        @teacher = Teacher.find_by(email: params[:email])
+        if @coach.authenticate(params[:password])
+            session[:user_id] = @coach.id
+            render 'teachers/index'
+        elsif @teacher.authenticate(params[:password])
+            session[:user_id] = @teacher.id
+            redirect_to @post
+        else
+            redirect_to root_path
+        end
+    end
 
     # Oauth specfic log-in method
     def auth

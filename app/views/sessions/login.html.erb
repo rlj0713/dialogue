@@ -1,0 +1,20 @@
+<br><br>
+
+<h3>Login</h3>
+
+<form action="/login" method="POST">
+	<input type="text" name="email" placeholder="email">
+	<input type="password" name="password" placeholder="password">
+	<input type="submit" value="Log In">
+</form>
+<%= link_to('Log in with Facebook', '/auth/facebook') %>
+<%= link_to('Log in with Google', '/auth/google_oauth2') %>
+
+<br><br>
+If you are new to this app:
+<form action="/coaches/new" method="GET">
+	<input type="submit" value="Sign-Up as a Coach">
+</form>
+<form action="/teachers/new" method="GET">
+	<input type="submit" value="Sign-Up as a Teacher">
+</form>
