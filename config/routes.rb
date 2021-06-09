@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   get '/session', to: 'sessions#destroy'
   delete '/session', to: 'sessions#destroy'
 
-  resources :users
   resources :coaches
   resources :teachers
   resources :posts
