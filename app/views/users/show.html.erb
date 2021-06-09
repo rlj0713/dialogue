@@ -5,8 +5,10 @@
 <%= link_to "Log Out", session_path, method:'delete' %><br><br>
 
 <br>
-<%= link_to('Start the dialogue', '/posts/new') %>
+<%= link_to('Start a new dialogue', '/posts/new') %>
 
 <br>
 <br>
-List of posts with your name included (link to posts index):<br>
+List of relationships with your name included (link to posts index):<br>
+
+<%= link_to('Create a new relationship', '/users_user/new') %>

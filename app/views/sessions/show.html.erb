@@ -1,10 +1,9 @@
 
 <%= @user.first_name %>
 <img src="<%= @user.image %>">
-<% if @user != nil %>
-  <h1>This will show a list of teachers who belong to the coach</h1>
-<% else %>
-  <h1>This will show a list of posts pertaining to this teacher</h1>
-<% end %>
-<br>
+<br><br>
+You're logged in!
+<br><br>
+<%= link_to('Go to my profile', '/users/show') %>
+<br><br>
 <%= link_to "Log Out", session_path, method:'delete' %>
