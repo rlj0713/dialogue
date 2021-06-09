@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
     session[:user_id] = @user.id
     render 'sessions/home'
   end
-
+  
   def signup
     render 'sessions/signup'
   end

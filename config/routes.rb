@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get '/signup' => 'sessions#signup'
 
-  post '/signup' => 'sessions#create' 
+  post '/signup' => 'users#create' 
   get '/session', to: 'sessions#destroy'
   delete '/session', to: 'sessions#destroy'
 
