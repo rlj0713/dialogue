@@ -3,20 +3,27 @@ class CoachesController < ApplicationController
 
     def create
         if auth == nil
-          @coach = Coach.new do |c|
-            c.email = params[:email]
-            c.password = params[:password]
-            c.first_name = params[:first_name]
-            c.last_name = params[:last_name]
-            c.coach_permission = true
-          end
-          @coach.save
+            @coach = Coach.new do |c|
+                c.email = params[:email]
+                c.password = params[:password]
+                c.first_name = params[:first_name]
+                c.last_name = params[:last_name]
+                c.coach_permission = true
+            end
+            @coach.save
+            session[:user_id] = @coach.id
+        else
+            @coach = Coach.find_or_create_by(uid: auth['uid']) do |c|
+                c.email = auth['info']['email']
+                c.image = auth['info']['image']
+            end
+            @coach.save
+            byebug
         end
         
         session[:user_id] = @coach.id
         redirect_to "/coaches/#{session[:user_id]}"
     end
-
 
     # def show
     #     @coach = Coach.find_by(email: params[:email])

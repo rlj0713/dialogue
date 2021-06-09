@@ -1,2 +1,0 @@
-class OateachersController < ApplicationController
-end
